@@ -63,7 +63,7 @@ This Action accepts the following configuration parameters via `with:`
 
 - `timeoutSeconds`
 
-  **Default: `600`**
+  **Default: `3600`**
 
   The number of seconds to wait for the check to complete. If the check does not complete within this amount of time, this Action will emit a `conclusion` value of `timed_out`.
   
@@ -72,6 +72,12 @@ This Action accepts the following configuration parameters via `with:`
   **Default: `10`**
 
   The number of seconds to wait before each poll of the GitHub API for checks on this commit.
+
+- `setJobStatus`
+
+  **Default: `true`**
+
+  Whether to set this job's status to the status of the job it's waiting on.
 
 ## Outputs
 

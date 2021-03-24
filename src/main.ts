@@ -15,11 +15,18 @@ async function run(): Promise<void> {
       repo: core.getInput('repo') || context.repo.repo,
       ref: core.getInput('ref') || context.sha,
 
-      timeoutSeconds: parseInt(core.getInput('timeoutSeconds') || '600'),
+      timeoutSeconds: parseInt(core.getInput('timeoutSeconds') || '3600'),
       intervalSeconds: parseInt(core.getInput('intervalSeconds') || '10')
     })
 
+    const setJobStatus = core.getInput('setJobStatus') === 'true'
+
     core.setOutput('conclusion', result)
+    if (setJobStatus) {
+      if (result === 'failure' || result === 'timed_out') {
+        core.setFailed("Issue fetching job status or job failed. Result: " + result)
+      }
+    }
   } catch (error) {
     core.setFailed(error.message)
   }
