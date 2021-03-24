@@ -24,7 +24,9 @@ async function run(): Promise<void> {
     core.setOutput('conclusion', result)
     if (setJobStatus) {
       if (result === 'failure' || result === 'timed_out') {
-        core.setFailed("Issue fetching job status or job failed. Result: " + result)
+        core.setFailed(
+          `Issue fetching job status or job failed. Result: ${result}`
+        )
       }
     }
   } catch (error) {
