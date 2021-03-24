@@ -47,7 +47,11 @@ export const poll = async (options: Options): Promise<string> => {
     const completedCheck = result.data.check_runs.find(
       checkRun => checkRun.status === 'completed'
     )
-    if (completedCheck && (completedCheck.conclusion === 'success' || completedCheck.conclusion === 'failure')) {
+    if (
+      completedCheck &&
+      (completedCheck.conclusion === 'success' ||
+        completedCheck.conclusion === 'failure')
+    ) {
       log(
         `Found a completed check with id ${completedCheck.id} and conclusion ${completedCheck.conclusion}`
       )

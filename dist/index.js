@@ -3248,7 +3248,7 @@ exports.poll = (options) => __awaiter(void 0, void 0, void 0, function* () {
         });
         log(`Retrieved ${result.data.check_runs.length} check runs named ${checkName}`);
         const completedCheck = result.data.check_runs.find(checkRun => checkRun.status === 'completed');
-        if (completedCheck) {
+        if (completedCheck && (completedCheck.conclusion === 'success' || completedCheck.conclusion === 'failure')) {
             log(`Found a completed check with id ${completedCheck.id} and conclusion ${completedCheck.conclusion}`);
             return completedCheck.conclusion;
         }
