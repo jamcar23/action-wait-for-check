@@ -7,7 +7,7 @@ branding:
 inputs:
   token:
     description: 'The GitHub token to use for making API requests.'
-    required: true
+    default: ${{ secrets.GITHUB_TOKEN }}
   checkName:
     description: 'The name of the GitHub check to wait for. For example, `build` or `deploy`.'
     required: true
@@ -21,8 +21,10 @@ inputs:
     description: 'The number of seconds to wait for the check to complete.'
   intervalSeconds:
     description: 'The number of seconds to wait before each poll of the GitHub API.'
+    default: 3600
   setJobStatus:
-    description: 'Whether to set this job's status to the status of the job it's waiting on.'
+    description: "Whether to set this job's status to the status of the job it's waiting on."
+    default: 'true'
 runs:
   using: 'node12'
   main: 'dist/index.js'
